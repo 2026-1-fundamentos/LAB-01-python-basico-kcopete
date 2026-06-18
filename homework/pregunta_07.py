@@ -25,3 +25,26 @@ def pregunta_07():
      (9, ['A', 'B', 'E', 'A', 'A', 'C'])]
 
     """
+    datos = {}
+
+    with open("files/input/data.csv", "r") as archivo:
+        for linea in archivo:
+            columnas = linea.strip().split("\t")
+
+            letra = columnas[0]
+            numero = int(columnas[1])
+
+            if numero not in datos:
+                datos[numero] = []
+
+            datos[numero].append(letra)
+
+    resultado = []
+
+    for numero in sorted(datos):
+        resultado.append((numero, datos[numero]))
+
+    return resultado
+
+
+print(pregunta_07())

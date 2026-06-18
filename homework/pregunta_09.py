@@ -24,3 +24,28 @@ def pregunta_09():
      'jjj': 18}}
 
     """
+    conteo = {}
+
+    with open("files/input/data.csv", "r") as archivo:
+        for linea in archivo:
+            columnas = linea.strip().split("\t")
+
+            pares = columnas[4].split(",")
+
+            for par in pares:
+                clave = par.split(":")[0]
+
+                if clave in conteo:
+                    conteo[clave] = conteo[clave] + 1
+                else:
+                    conteo[clave] = 1
+
+    resultado = {}
+
+    for clave in sorted(conteo):
+        resultado[clave] = conteo[clave]
+
+    return resultado
+
+
+print(pregunta_09())
